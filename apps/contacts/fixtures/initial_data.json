@@ -1,0 +1,35 @@
+[
+  {
+    "model": "contacts.contacts",
+    "pk": 1,
+    "fields": {
+      "name": "Peter",
+      "surname": "Datsiuk",
+      "date_of_birth": "1992-11-04",
+      "bio": "I am on the on the 6 year of studying in the Kyiv Polytechnic University. I was born on 11th of april in Ukraine.",
+      "email": "pacufist@gmail.com",
+      "jabber": "pastme@42cc.co",
+      "skype": "armogidec",
+      "contacts": "063636363"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "last_name": "",
+      "first_name": "Peter",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2014-10-06 06:36:54",
+      "groups": [],
+      "user_permissions": [],
+      "password": "100362",
+      "email": "admin@example.com",
+      "date_joined": "2014-10-05T17:00:00.144Z"
+    }
+  }
+]
+
