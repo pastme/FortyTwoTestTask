@@ -14,22 +14,22 @@
     }
   },
   {
-    "model": "auth.user",
     "pk": 1,
+    "model": "auth.user",
     "fields": {
       "username": "admin",
-      "last_name": "",
       "first_name": "Peter",
+      "last_name": "",
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": "2014-10-06 06:36:54",
+      "last_login": "2014-10-06T06:36:54Z",
       "groups": [],
       "user_permissions": [],
       "password": "100362",
       "email": "admin@example.com",
       "date_joined": "2014-10-05T17:00:00.144Z"
-    }
   }
+}
 ]
 
