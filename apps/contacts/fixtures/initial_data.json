@@ -14,21 +14,21 @@
     }
   },
   {
-    "pk": 1,
+  "pk": 1,
     "model": "auth.user",
     "fields": {
       "username": "admin",
-      "first_name": "Peter",
+      "first_name": "",
       "last_name": "",
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": "2014-10-06T06:36:54Z",
+      "last_login": "2014-11-10T16:38:21.190Z",
       "groups": [],
       "user_permissions": [],
-      "password": "100362",
-      "email": "admin@example.com",
-      "date_joined": "2014-10-05T17:00:00.144Z"
+      "password": "pbkdf2_sha256$12000$xjnhnYNfWpSV$exsmU6NMRq5SUE13lSy8We7mdooWLvlKGoOvBsykhrA=",
+      "email": "pacufist@gmail.com",
+      "date_joined": "2014-11-10T16:38:21.190Z"
   }
 }
 ]
