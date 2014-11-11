@@ -8,7 +8,7 @@ class Migration(DataMigration):
 
     def forwards(self, orm):
         "Write your forwards methods here."
-        orm.Contacts.objects.bulk_create([orm.Contacts(id=1,name='Peter',surname='Datsiuk',date_of_birth=datetime.datetime.now().date(),bio = "I am on the on the 6 year of studying in the Kyiv Polytechnic University. I was born on 11th of april in Ukraine.",email= "pacufist@gmail.com",jabber = "pastme@42cc.co",skype="armogidec",contacts="063636363"),])
+        orm.Contacts.objects.bulk_create([orm.Contacts(id=1,name='Peter',surname='Datsiuk',date_of_birth=datetime.datetime.now().date(),bio = "I am on the on the 6 year of studying in the Kyiv Polytechnic University. I was born on 11th of april in Ukraine.",email= "pacufist@gmail.com",jabber = "pastme@42cc.co",skype="armogidec",contacts="mobile: 063636363"),])
         orm['auth.User'].objects.bulk_create([orm['auth.User'](id = 1,username = 'admin', first_name = "",last_name="",is_active=True,is_superuser=True,is_staff=True,last_login=datetime.datetime.now(),password = "pbkdf2_sha256$12000$xjnhnYNfWpSV$exsmU6NMRq5SUE13lSy8We7mdooWLvlKGoOvBsykhrA=",email="pacufist@gmail.com",date_joined="2014-11-10T16:38:21.190Z"),])
         # Note: Don't use "from appname.models import ModelName".
         # Use orm.ModelName to refer to models in this application,
