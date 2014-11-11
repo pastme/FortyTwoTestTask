@@ -1,15 +1,57 @@
-    <div  align="left">
-        <p>Name: {{ object.name }}</p>
-        <p>Surname: {{ object.surname }}</p>
-        <p>Date of birth: {{ object.date_of_birth }}</p>
 
-    </div>
-    <div align="right">
-        <p>Contacts</p>
-        <p>Email: {{ object.email }}</p>
-        <p>Jabber: {{ object.jabber }}</p>
-        <p>Skype: {{ object.skype }}</p>
-        <p>Other objects:</p>
-        {{ object.contacts}}
-        <p>Bio:</p>{{ object.bio}}
-    </div>
+<table border="0" cellpadding="10" cellspacing="10" style="width:100%">
+<caption><h1>
+<p style="text-align: left;">42 Coffee Cups Test Assignment</p></h1>>
+</caption>
+<tbody>
+<tr>
+<td>
+<pre>Name</pre>
+{{object.name}}
+</td>
+<td>
+<pre>Contacts</pre>
+</td>
+</tr>
+<tr>
+<td>
+<pre>Last name</pre>
+{{object.surname}}
+</td>
+<td>
+<pre>Email:</pre>
+{{object.email}}
+</td>
+</tr>
+<tr>
+<td>
+<pre>Date of birth</pre>
+{{object.date_of_birth}}
+</td>
+<td>
+<pre>Jabber: </pre>
+{{object.jabber}}
+</td>
+</tr>
+<tr>
+<td>
+<pre>&nbsp;</pre>
+</td>
+<td>
+<pre>Skype: </pre>
+{{object.skype}}
+</td>
+</tr>
+<tr>
+<td>
+<pre>Bio:</pre>
+{{object.bio|linebreaks}}
+</td>
+<td>
+<pre>
+Other contacts:</pre>
+{{object.name|linebreaks}}
+</td>
+</tr>
+</tbody>
+</table>
