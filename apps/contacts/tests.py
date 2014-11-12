@@ -62,7 +62,7 @@ class ContactEditTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, contact['name'])
         self.assertContains(response, contact['surname'])
-        self.assertContains(response, date(contact['birth_date']))
+        self.assertContains(response, date(contact['date_of_birth']))
         self.assertContains(response, contact['email'])
         self.assertContains(response, contact['jabber'])
         self.assertContains(response, contact['skype'])

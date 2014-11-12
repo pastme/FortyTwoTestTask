@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+<form id="ContactForm" enctype="multipart/form-data" action="" method="post">
+    <div >
+        {% csrf_token %}
+
+         <div class="left-column">
+
+            Name: {{ form.name }}
+            <div class="errorfield">{{ form.name.errors }}</div>
+            Last name:{{ form.surname }}
+            <div class="errorfield">{{ field.surname.errors }}</div>
+            Date of birth:{{ form.date_of_birth }}
+            <div class="errorfield">{{ form.date_of_birth.errors }}</div>
+            Photo:{{ form.photo }}
+            <div class="errorfield">{{ form.photo.errors }}</div>
+            {% if form.instance.photo %}
+                    <img src="{{ form.instance.photo.url }}" alt="Photo" />
+            {% endif %}
+
+            </div>
+            <div class="right-column">
+            Email: {{ form.email }}
+            <div class="errorfield">{{ form.email.errors }}</div>
+            Jabber:{{ form.jabber }}
+            <div class="errorfield">{{ field.jabber.errors }}</div>
+            Skype:{{ form.skype }}
+            <div class="errorfield">{{ form.skype.errors }}</div>
+            Other contacts:{{ form.contacts }}
+            <div class="errorfield">{{ form.contacts.errors }}</div>
+            Bio:{{ form.bio }}
+            <div class="errorfield">{{ form.bio.errors }}</div>
+
+        </div>
+        <div class="clearer"></div>
+        <div>
+        <input  type="submit" value="Save" name="submit">
+        <a href="{% url 'view_contact' %}">Cancel</a>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

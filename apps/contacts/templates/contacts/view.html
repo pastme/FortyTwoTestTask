@@ -1,15 +1,39 @@
-    <div  align="left">
-        <p>Name: {{ object.name }}</p>
-        <p>Surname: {{ object.surname }}</p>
-        <p>Date of birth: {{ object.date_of_birth }}</p>
+{% extends "base.html" %}
 
+{% block title %}Contacts{% endblock %}
+
+{% block header %}
+        <div style="float: right;">
+        {% if not user.is_authenticated %}
+        <a href="{% url 'auth_login' %}">Login</a>
+{% else %}
+        <a href="{% url 'auth_logout' %}">Logout</a>
+    {% endif %}
     </div>
-    <div align="right">
+    <h1>42 Coffee Cups Test Assignment</h1>
+{% endblock %}
+
+{% block content %}
+<article>
+    <div class="left-column">
+        <p>{{ object.name }}</p>
+        <p>{{ object.surname }}</p>
+        <p>{{ object.date_of_birth }}</p>
+        Photo:<br />
+        {% if object.photo %}
+            <img src="{{ object.photo.url }}" alt="Photo" />
+        {% endif %}
+    </div>
+    <div class="right-column">
         <p>Contacts</p>
         <p>Email: {{ object.email }}</p>
         <p>Jabber: {{ object.jabber }}</p>
         <p>Skype: {{ object.skype }}</p>
-        <p>Other objects:</p>
-        {{ object.contacts}}
-        <p>Bio:</p>{{ object.bio}}
+        <p>Other contacts:</p>
+        {{ object.contacts|linebreaks }}
+        <p>Bio:</p>{{ object.bio|linebreaks }}
     </div>
+</article>
+{% endblock %}
+{% block footer %}
+{% endblock %}
