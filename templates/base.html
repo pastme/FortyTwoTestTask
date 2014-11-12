@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}Site Name</title>
+        <title>{% block title %}{% endblock title %}Contacts</title>
 
         <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
 
@@ -17,6 +17,16 @@
 
     </head>
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-        {% block content %}{% endblock content %}
+        <header>
+    {% block header %}
+    {% endblock %}
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+    {% block footer %}
+    {% endblock %}
+    </footer>
+
     </body>
 </html>
