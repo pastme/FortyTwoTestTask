@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.template.defaultfilters import escape, date, linebreaks
 
-from contacts.models import Contacts
+from contacts.models import Contacts, RequestData
 
 class ContactTest(TestCase):
     fixtures = ['initial_data.json']
@@ -68,3 +68,40 @@ class ContactEditTest(TestCase):
         self.assertContains(response, contact['skype'])
         self.assertContains(response, escape(contact['bio']))
         self.assertContains(response, escape(contact['contacts']))
+
+
+
+
+class MiddlewareTest(TestCase):
+
+    def test_storing(self):
+        for i in range(10):
+            self.client.get('')
+        requests = RequestData.objects.all()
+        self.assertEqual(requests.count(), 10)
+
+    def tearDown(self):
+        RequestData.objects.all().delete()
+
+
+class RequestTest(TestCase):
+    def test_view(self):
+        response = self.client.get('/edit/')
+        request_data = RequestData.objects.get()
+        self.assertContains(request_data, '/edit/')
+        self.assertContains(request_data, 'GET')
+        self.assertContains(request_data, 'POST')
+        self.assertContains(request_data, 'COOKIES')
+
+
+    def tearDown(self):
+        RequestData.objects.all().delete()
+
+
+class ViewRequestTest(TestCase):
+    def test_view_request(self):
+        response = self.client.get('/requests/')
+        requests = RequestData.objects.all().order_by('timestamp')
+        self.assertContains(response, requests)
+
+
