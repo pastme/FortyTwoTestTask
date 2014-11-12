@@ -1,5 +1,5 @@
 from django.db import models
-from PIL import Image
+import Image
 
 class Contacts(models.Model):
     name = models.CharField(max_length = 200)
