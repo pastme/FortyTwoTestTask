@@ -2,6 +2,7 @@ from django.test import TestCase, RequestFactory
 from django.template.defaultfilters import escape, date, linebreaks
 from apps.contacts.middleware import RequestToDbMiddleware
 from django.contrib.auth.models import AnonymousUser
+from django.conf import settings
 
 from contacts.models import Contacts, RequestData
 
@@ -72,6 +73,11 @@ class ContactEditTest(TestCase):
         self.assertContains(response, escape(contact['contacts']))
 
 
+
+class ContextProcessorTest(TestCase):
+    def test_context_processor(self):
+        response = self.client.get('/')
+        self.assertEqual(response.context['settings'],settings)
 
 
 class MiddlewareCountTest(TestCase):
