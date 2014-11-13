@@ -77,7 +77,7 @@ class ContactEditTest(TestCase):
 class ContextProcessorTest(TestCase):
     def test_context_processor(self):
         response = self.client.get('/')
-        self.assertContains(response.context['settings'],settings)
+        self.assertEqual(response.context['settings'],settings)
 
 
 class MiddlewareCountTest(TestCase):
