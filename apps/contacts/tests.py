@@ -74,6 +74,30 @@ class ContactEditTest(TestCase):
 
 
 
+class AjaxFormTest(TestCase):
+    def test_ajax_form(self):
+        contact = {}
+        contact['name'] = 'Tester'
+        contact['surname'] = 'Testovich'
+        contact['date_of_birth'] = '1992-11-03'
+        contact['email'] = 'tester@test.com'
+        contact['jabber'] = 'jabtest@test.com'
+        contact['skype'] = 'testik'
+        contact['bio'] = "I was born in testland by mighty testers."
+        contact['contacts'] = "mobile: 09707070707"
+
+        self.client.login(username='admin', password='100362')
+        self.client.post('/edit/', contact, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+        contact_object = Contacts.objects.get(pk=1)
+        for key, value in contact.items():
+            if key != 'date_of_birth':
+                self.assertEqual(getattr(contact_object, key), value)
+
+
+
+
+
 class ContextProcessorTest(TestCase):
     def test_context_processor(self):
         response = self.client.get('/')
