@@ -1,5 +1,7 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.template.defaultfilters import escape, date, linebreaks
+from apps.contacts.middleware import RequestToDbMiddleware
+from django.contrib.auth.models import AnonymousUser
 
 from contacts.models import Contacts, RequestData
 
@@ -72,7 +74,7 @@ class ContactEditTest(TestCase):
 
 
 
-class MiddlewareTest(TestCase):
+class MiddlewareCountTest(TestCase):
 
     def test_storing(self):
         for i in range(10):
@@ -84,24 +86,17 @@ class MiddlewareTest(TestCase):
         RequestData.objects.all().delete()
 
 
-class RequestTest(TestCase):
-    def test_view(self):
-        response = self.client.get('/edit/')
-        request_data = RequestData.objects.get()
-        self.assertContains(request_data, '/edit/')
-        self.assertContains(request_data, 'GET')
-        self.assertContains(request_data, 'POST')
-        self.assertContains(request_data, 'COOKIES')
+class RequestToDbMiddlewareTest(TestCase):
 
-
-    def tearDown(self):
+    def setUp(self):
         RequestData.objects.all().delete()
+        self.rm = RequestToDbMiddleware()
+        self.factory = RequestFactory()
+        self.user = AnonymousUser()
 
-
-class ViewRequestTest(TestCase):
-    def test_view_request(self):
-        response = self.client.get('/requests/')
-        requests = RequestData.objects.all().order_by('timestamp')
-        self.assertContains(response, requests)
-
+    def test_process_request_for_middleware(self):
+        request = self.factory.get('/')
+        self.rm.process_request(request)
+        request_data = RequestData.objects.get()
+        self.assertEqual(str(request), request_data.data)
 
