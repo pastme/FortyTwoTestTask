@@ -29,3 +29,8 @@ class Contacts(models.Model):
         size = ( width, height)
         image = image.resize(size, Image.ANTIALIAS)
         image.save(self.photo.path)
+
+
+class RequestData(models.Model):
+    data = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.template.defaultfilters import escape, date, linebreaks
+from apps.contacts.middleware import RequestToDbMiddleware
+from django.contrib.auth.models import AnonymousUser
 
-from contacts.models import Contacts
+from contacts.models import Contacts, RequestData
 
 class ContactTest(TestCase):
     fixtures = ['initial_data.json']
@@ -68,3 +70,33 @@ class ContactEditTest(TestCase):
         self.assertContains(response, contact['skype'])
         self.assertContains(response, escape(contact['bio']))
         self.assertContains(response, escape(contact['contacts']))
+
+
+
+
+class MiddlewareCountTest(TestCase):
+
+    def test_storing(self):
+        for i in range(10):
+            self.client.get('')
+        requests = RequestData.objects.all()
+        self.assertEqual(requests.count(), 10)
+
+    def tearDown(self):
+        RequestData.objects.all().delete()
+
+
+class RequestToDbMiddlewareTest(TestCase):
+
+    def setUp(self):
+        RequestData.objects.all().delete()
+        self.rm = RequestToDbMiddleware()
+        self.factory = RequestFactory()
+        self.user = AnonymousUser()
+
+    def test_process_request_for_middleware(self):
+        request = self.factory.get('/')
+        self.rm.process_request(request)
+        request_data = RequestData.objects.get()
+        self.assertEqual(str(request), request_data.data)
+

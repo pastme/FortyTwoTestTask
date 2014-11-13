@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Requests{% endblock %}
+
+{% block header %}
+
+    <h1>42 Coffee Cups Test Assignment</h1>
+{% endblock %}
+
+{% block content %}
+<article>
+    <div class="left-column">
+        <p>Requests</p>
+        {% for request in object_list %}
+        <div>
+        <p>{{request.timestamp}}:</p>{{ request.data|truncatechars:100  }}
+         </div>
+         {% endfor %}
+    </div>
+</article>
+{% endblock %}
+{% block footer %}
+{% endblock %}

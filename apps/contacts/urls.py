@@ -15,5 +15,8 @@ urlpatterns = patterns('',
     url(r'^edit/$',views.EditContact.as_view(),
         {'contact_id': 1},
         name='edit_contact'),
+    url(r'^requests/$',views.ListRequests.as_view(),
+        name='requests'),
+
 
 )
